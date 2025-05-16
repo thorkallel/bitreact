@@ -2,18 +2,32 @@
 // Un componente en React es una función que devuelve contenido HTML
 import "./App.css";
 
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import { MyButton } from "./components/MyButton";
 // Sintaxis de JSX
 export function App() {
   let isLoggedIn = false;
   let mensaje = "";
+  const temas = [
+    "Sintaxis JSX",
+    "Creacion y anidado de componentes",
+    "Renderizado condicional",
+    "Renderizado de listas",
+    "Agregar estilos",
+    "Paso de propiedades o (props) entre componentes",
+    "Trabajando con formularios",
+    "Manejo de eventos",
+  ];
 
   if (isLoggedIn) {
     mensaje = "Bienvenido de nuevo";
   } else {
     mensaje = "Inicia sesion";
   }
+
+  const myFunction = () => {
+    console.log("Click me");
+  };
 
   return (
     // JSX: JavaScript XML
@@ -88,7 +102,7 @@ export function App() {
               elemento JSX.
             </p>
             <p>
-              <MyButton />
+              <MyButton text="Click me" myFunction={myFunction} />
             </p>
           </section>
 
@@ -111,7 +125,15 @@ export function App() {
               El renderizado de listas es la capacidad de mostrar una lista de
               elementos.
             </p>
-            <p></p>
+            <p>
+              Para recorrer listas en React se utiliza el metodo map, que
+              devuelve un nuevo array.
+            </p>
+            <ul>
+              {temas.map((tema) => (
+                <li key={tema}>{tema}</li>
+              ))}
+            </ul>
           </section>
 
           <section
@@ -124,7 +146,25 @@ export function App() {
               componentes.
             </p>
             <p>
-              <MyButton />
+              <MyButton myFunction={myFunction} />
+            </p>
+          </section>
+
+          <section>
+            <h2>Paso de propiedades o (props) entre componentes</h2>
+            <p>
+              Las props son la forma en que los componentes se comunican entre
+              sí.
+            </p>
+            <p>
+              Las props son argumentos que se pasan a los componentes, existe
+              una gerarquia de componentes, el componente padre le pasa props al
+              componente hijo.
+            </p>
+            <p>
+              <MyButton text="Click me 01 " myFunction={myFunction} />
+              <MyButton text="Click me 02" myFunction={myFunction} />
+              <MyButton text="Click me 03" myFunction={myFunction} />
             </p>
           </section>
         </div>
